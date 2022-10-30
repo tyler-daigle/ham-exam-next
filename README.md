@@ -1,5 +1,14 @@
 # Ham Exam Practice
 
+Next.js version of the ham exam practice. Start with SQLite DB but will switch to Postgres.
+
+Things to use or check out:
+
+- Prisma
+- Zod
+- React Query
+- Jotai
+
 ## Database
 
 **Exam**
