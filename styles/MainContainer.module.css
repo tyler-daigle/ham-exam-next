@@ -1,0 +1,9 @@
+.mainContainer {
+  margin: 1rem;
+}
+
+@media screen and (min-width: 850px) {
+  .mainContainer {
+    max-width: 800px;
+  }
+}

@@ -1,0 +1,6 @@
+.questionContainer {
+  border: solid 1px var(--question-container-border);
+  background-color: var(--question-container-bg);
+  padding: 1rem;
+  border-radius: 10px;
+}

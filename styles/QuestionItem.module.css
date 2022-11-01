@@ -1,0 +1,14 @@
+.questionDetails {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-size: 0.8rem;
+}
+
+.questionIndex {
+  color: var(--light-blue);
+}
+
+.questionId {
+  color: var(--bright-green);
+}
