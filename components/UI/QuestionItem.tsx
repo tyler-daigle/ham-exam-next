@@ -1,8 +1,8 @@
 // import styles from "../styles/QuestionItem.module.css";
 import styles from "@/styles/QuestionItem.module.css";
-import QuestionContainer from "./QuestionContainer";
-import QuestionText from "./QuestionText";
-import QuestionChoices from "./QuestionChoices";
+import QuestionContainer from "@/components/QuestionContainer";
+import QuestionText from "@/components/QuestionText";
+import QuestionChoices from "@/components/QuestionChoices";
 
 import { IQuestion } from "@/types/types";
 

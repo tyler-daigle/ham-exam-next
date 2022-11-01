@@ -1,5 +1,5 @@
-import styles from "../styles/QuestionList.module.css";
-import QuestionItem from "./QuestionItem";
+import styles from "@/styles/QuestionList.module.css";
+import QuestionItem from "@/components/QuestionItem";
 import { IQuestion } from "@/types/types";
 
 export interface Props {

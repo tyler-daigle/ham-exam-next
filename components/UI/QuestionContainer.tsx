@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "../styles/QuestionContainer.module.css";
+import styles from "@/styles/QuestionContainer.module.css";
 
-export interface Props  {
+export interface Props {
   children: React.ReactNode
 }
 
-export default function QuestionContainer({ children }: Props) {  
+export default function QuestionContainer({ children }: Props) {
   return <li className={styles.questionContainer}>{children}</li>;
 }
 
