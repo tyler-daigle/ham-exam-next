@@ -1,7 +1,12 @@
 import styles from "../styles/QuestionList.module.css";
 import QuestionItem from "./QuestionItem";
+import { IQuestion } from "@/types/types";
 
-export default function QuestionList({ questions }) {
+export interface Props {
+  questions: IQuestion[];
+}
+
+export default function QuestionList({ questions }: Props) {
   return (
     <ul className={styles.questionList}>
       {questions.map((question, index) => (

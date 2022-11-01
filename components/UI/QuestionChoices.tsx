@@ -10,8 +10,12 @@ import { useState } from "react";
 // TODO: This is where some global state of what questions have been answered and their
 // values would be set.
 
-export default function QuestionChoices({ choices }) {
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+export interface Props {
+  choices: string[]
+};
+
+export default function QuestionChoices({choices}: Props) {
+  const [selectedAnswer, setSelectedAnswer] = useState<number>();
   return (
     <ol className={styles.questionChoiceList}>
       {choices.map((choice, index) => (

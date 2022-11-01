@@ -1,10 +1,17 @@
-import styles from "../styles/QuestionItem.module.css";
-
+// import styles from "../styles/QuestionItem.module.css";
+import styles from "@/styles/QuestionItem.module.css";
 import QuestionContainer from "./QuestionContainer";
 import QuestionText from "./QuestionText";
 import QuestionChoices from "./QuestionChoices";
 
-export default function QuestionItem({ question, index }) {
+import { IQuestion } from "@/types/types";
+
+export interface Props {
+  question: IQuestion;
+  index: number;
+}
+
+export default function QuestionItem({ question, index }: Props) {
   return (
     <QuestionContainer>
       <div className={styles.questionDetails}>
@@ -12,8 +19,8 @@ export default function QuestionItem({ question, index }) {
         <span className={styles.questionId}>{question.id}</span>
       </div>
 
-      <QuestionText>{question.question}</QuestionText>
-      <QuestionChoices choices={question.answers} />
+      <QuestionText>{question.text}</QuestionText>
+      <QuestionChoices choices={question.choices} />
     </QuestionContainer>
   );
 }
