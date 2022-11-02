@@ -5,6 +5,8 @@ import MainContainer from "@/components/UI/MainContainer";
 import QuestionList from "@/components/QuestionList";
 import { IQuestion } from "@/types/types";
 
+import QuestionItemViewOnly from "@/components/QuestionItemViewOnly";
+
 export interface Props {
   msg: string | undefined;
   question: IQuestion | null;
@@ -14,7 +16,7 @@ export default function QuestionPage({ msg, question }: Props) {
 
   if (question) {
     console.log(question);
-    return <MainContainer><QuestionList questions={[question]} /></MainContainer>;
+    return <MainContainer><QuestionItemViewOnly question={question} /></MainContainer>;
   } else {
     return <div><h1>The question wasn't found.</h1></div>;
   }
