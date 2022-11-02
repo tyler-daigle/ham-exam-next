@@ -12,3 +12,11 @@
 .questionId {
   color: var(--bright-green);
 }
+
+.helpLink {
+  background-color: var(--bright-pink);
+  color: var(--question-container-bg);
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 1rem;
+}
