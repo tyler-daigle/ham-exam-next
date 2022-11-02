@@ -21,7 +21,7 @@ export default function QuestionChoices({ choices }: Props) {
   return (
     <ol className={styles.questionChoiceList}>
       {choices.map((choice, index) => (
-        <li className={styles.choiceItem}>
+        <li key={`${choice}${index}`} className={styles.choiceItem}>
           <input
             type="checkbox"
             checked={selectedAnswer === index}

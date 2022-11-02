@@ -60,7 +60,7 @@ function QuestionChoicesViewOnly({ choices, correctAnswer, selectedAnswer }: Que
 
   return (
     <ol style={style as React.CSSProperties}>
-      {choices.map((choice, index) => <QuestionChoiceItem questionText={choice} correct={correctAnswer === index} wrong={correctAnswer !== selectedAnswer && index === selectedAnswer} />)}
+      {choices.map((choice, index) => <QuestionChoiceItem key={`${choice}${index}`} questionText={choice} correct={correctAnswer === index} wrong={correctAnswer !== selectedAnswer && index === selectedAnswer} />)}
     </ol>
   )
 }
