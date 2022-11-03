@@ -2,14 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../db_util/db";
 import { z } from "zod";
 
-interface Question {
-  id: string;
-  text: string;
-  choices: string[];
-  answer: number;
-  subelement: string;
-  group: string;
-}
+import { IQuestion } from "../../../types/types";
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,8 +11,8 @@ export default async function handler(
   const questionId = req.query.question!.toString();
 
   try {
-    const result = await prisma.question.findFirstOrThrow({where: {questionId: questionId}});
-    const question: Question = {
+    const result = await prisma.question.findFirstOrThrow({ where: { questionId: questionId } });
+    const question: IQuestion = {
       id: result.questionId,
       text: result.questionText,
       choices: [result.choice0, result.choice1, result.choice2, result.choice3],
@@ -28,7 +21,7 @@ export default async function handler(
       group: result.group
     };
     res.status(200).json(question);
-  }catch(e) {
-    res.status(404).json({message: `Question ${questionId} not found`});
+  } catch (e) {
+    res.status(404).json({ message: `Question ${questionId} not found` });
   }
 }
