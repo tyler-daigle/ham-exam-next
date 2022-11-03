@@ -68,6 +68,9 @@ Returns details about the exam.
     [Refer to the docs](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/generating-prisma-client):
 
     _make sure @prisma/client is installed_
+    This also has to be run after **git clone** or **npm install** because the prisma client is stored in node_modules which does not get checked into git.
+
+    DATABASE_URL="file:./dev.db also has to be set in the .env file (which also isn't checked into git)
 
     ```shell
     $ npx prisma generate

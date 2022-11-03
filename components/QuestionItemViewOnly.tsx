@@ -40,7 +40,7 @@ function QuestionItemViewOnlyContainer({ children }: { children: React.ReactNode
 
 interface QuestionChoicesViewOnlyProps extends React.PropsWithChildren {
   choices: string[];
-  correctAnswer: number;
+  correctAnswer: number | null;
   selectedAnswer: number | null;
 }
 

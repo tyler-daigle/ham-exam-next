@@ -16,7 +16,7 @@ export default function QuestionPage({ msg, question }: Props) {
 
   if (question) {
     console.log(question);
-    return <MainContainer><QuestionItemViewOnly question={question} selectedAnswer={1} hideHelp={false} /></MainContainer>;
+    return <MainContainer><QuestionItemViewOnly question={question} selectedAnswer={null} hideHelp={false} /></MainContainer>;
   } else {
     return <div><h1>The question was not found.</h1></div>;
   }
