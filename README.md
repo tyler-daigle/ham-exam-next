@@ -80,3 +80,21 @@ Returns details about the exam.
     ```typescript
     import { PrismaClient } from "@prisma/client";
     ```
+
+--- 
+
+## The Database Tools 
+
+In the db_util/tools directory there are tools for adding the JSON data files (question data, subelement data and groups data) to
+the database using Prisma.
+
+**They should only be run when the database needs to be completely rebuilt. There are three scripts:
+    1. insert-questions.ts - this is for adding the questions from the JSON question files. 
+    2. insert-subelements.ts - this will add the subelements to the database. It MUST be run before insert-groups.ts (the next script)
+       because it has a relationship to the subelements.
+    3. insert-groups.ts should run last. It adds the group data to the database.**
+
+*As of right now only the Technician questions are added. Once that is working the other tests will be added and the scripts (or the JSON) files
+ will have to be changed because the scripts are manually importing the tech-question JSON files.*
+
+

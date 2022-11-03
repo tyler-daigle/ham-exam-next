@@ -31,16 +31,19 @@ model Question {
 }
 
 model Group {
-  id          Int    @id @default(autoincrement())
-  groupId     String @unique
-  description String
+  id           Int        @id @default(autoincrement())
+  groupId      String     @unique
+  description  String
+  subelement   Subelement @relation(fields: [subelementId], references: [subelementId])
+  subelementId String
 }
 
 model Subelement {
-  id                Int    @id @default(autoincrement())
-  subelementId      String @unique
+  id                Int     @id @default(autoincrement())
+  subelementId      String  @unique
   name              String
   numExamQuestions  Int
   numGroups         Int
   numTotalQuestions Int
+  groups            Group[]
 }
