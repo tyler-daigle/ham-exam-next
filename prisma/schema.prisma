@@ -11,21 +11,36 @@ datasource db {
 }
 
 model Exam {
-  id Int @id @default(autoincrement())
-  name String @unique
-  numberQuestions Int 
+  id              Int    @id @default(autoincrement())
+  name            String @unique
+  numberQuestions Int
   requiredCorrect Int
 }
 
 model Question {
-  id Int @id @default(autoincrement())
-  questionId String @unique
+  id           Int    @id @default(autoincrement())
+  questionId   String @unique
   questionText String
-  answer Int
-  subelement String
-  group String
-  choice0 String
-  choice1 String
-  choice2 String
-  choice3 String
+  answer       Int
+  subelement   String
+  group        String
+  choice0      String
+  choice1      String
+  choice2      String
+  choice3      String
+}
+
+model Group {
+  id          Int    @id @default(autoincrement())
+  groupId     String @unique
+  description String
+}
+
+model Subelement {
+  id                Int    @id @default(autoincrement())
+  subelementId      String @unique
+  name              String
+  numExamQuestions  Int
+  numGroups         Int
+  numTotalQuestions Int
 }

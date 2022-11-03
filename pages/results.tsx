@@ -7,6 +7,8 @@ type WrongAnswer = {
   answerSelected: number
 };
 
+// this is what the exam results data has to look like --- wherever it comes from...
+// the map for the wrong answers is indexed by the Question IDs
 export interface IExamResults {
   wrongAnswers: Map<string, number>;
   numberCorrect: number;
@@ -35,6 +37,7 @@ const examResults: IExamResults = {
   passed: false
 }
 
+// create a map from the fake data to make looking up the question data easier
 wrongAnswers.forEach(answer => examResults.wrongAnswers.set(answer.questionId, answer.answerSelected));
 
 
@@ -48,6 +51,7 @@ export default function Results() {
     const questions: IQuestion[] = [];
 
     const getQuestions = async () => {
+      // TODO: make a new api endpoint that can get multiple questions at once.
       for (const questionId of wrongAnswers.keys()) {
         const res = await fetch(`http://localhost:3000/api/question/${questionId}`)
         const json = await res.json();
