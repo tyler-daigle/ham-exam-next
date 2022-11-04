@@ -19,6 +19,10 @@ export default async function subelement(req: NextApiRequest, res: NextApiRespon
     queryParser.parse(subelement);
     
     const data = await prisma.question.findMany({ where: { subelement: subelement }, orderBy: {questionId: "asc"} });
+    
+    // TODO: this query returns the questions with the choice0, choice1, etc.. fields. It needs to be combined so that it
+    // can return a single choices array like in the IQuestion interface.
+
     res.status(200).json({ questions: data });
   } catch (e) {
     res.status(404).json({ msg: "invalid input" });
