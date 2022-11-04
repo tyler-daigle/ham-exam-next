@@ -40,7 +40,13 @@ export default async function handler(
       
     const exam = await prisma.exam.findFirstOrThrow({
       where: { name: examName },
-      include: {subelements: true}
+      include: {subelements: {
+        orderBy : {
+          subelementId: "asc"
+        }        
+      }
+    },
+      
     });
     console.log(exam.subelements);
     
