@@ -7,6 +7,17 @@ interface ExamType {
   name: string;
   numberQuestions: number;
   requiredCorrect: number;
+  subelements: string[];
+}
+
+interface Subelement {
+  id: number;
+  subelementId: string;
+  name: string;
+  numExamQuestions: number;
+  numGroups: number;
+  numTotalQuestions: number;
+  examId: number;
 }
 
 export default async function handler(
@@ -20,17 +31,24 @@ export default async function handler(
     name: z.string(),
     numberQuestions: z.number(),
     requiredCorrect: z.number(),
+    subelements: z.any().array()
   });
 
+  console.log(examName);
   try {
     examNameSchema.parse(examName);
+      
     const exam = await prisma.exam.findFirstOrThrow({
       where: { name: examName },
+      include: {subelements: true}
     });
+    console.log(exam.subelements);
+    
     examSchema.parse(exam);
     res.status(200).json(exam);
   } catch (e) {
-    res.status(404).json({ status: `No exam named '${examName}' found.` });
+    console.log(e);
+    res.status(404).json({ status: `No exam named '${examName}' found.`,});
   }
   return;
 }
