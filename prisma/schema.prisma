@@ -12,6 +12,7 @@ datasource db {
 
 model Exam {
   id              Int          @id @default(autoincrement())
+  examId          Int          @unique
   name            String       @unique
   numberQuestions Int
   requiredCorrect Int
@@ -47,6 +48,6 @@ model Subelement {
   numGroups         Int
   numTotalQuestions Int
   groups            Group[]
-  exam              Exam    @relation(fields: [examId], references: [id])
-  examId            Int
+  exam              Exam    @relation(fields: [examId], references: [examId])
+  examId            Int     @default(1)
 }
