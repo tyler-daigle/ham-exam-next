@@ -20,29 +20,21 @@ model Exam {
 }
 
 model Question {
-  id           Int       @id @default(autoincrement())
-  questionId   String    @unique
-  questionText String
-  subelement   String
-  group        String
-  choices      Choice[]
-  Answers      Answers[]
+  id            Int      @id @default(autoincrement())
+  questionId    String   @unique
+  questionText  String
+  subelement    String
+  group         String
+  correctAnswer Int      @default(1)
+  choices       Choice[]
 }
 
 model Choice {
-  id         Int       @id @default(autoincrement())
-  questionId String
-  text       String
-  Question   Question  @relation(fields: [questionId], references: [questionId])
-  Answers    Answers[]
-}
-
-model Answers {
-  id         Int      @id @default(autoincrement())
-  Question   Question @relation(fields: [questionId], references: [id])
-  Choice     Choice   @relation(fields: [choiceId], references: [id])
-  questionId Int
-  choiceId   Int
+  id          Int       @id @default(autoincrement())
+  answerIndex Int       @default(1)
+  text        String
+  Question    Question? @relation(fields: [questionId], references: [id])
+  questionId  Int?
 }
 
 model Group {
