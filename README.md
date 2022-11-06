@@ -46,11 +46,46 @@ Things to use or check out:
 
 ---
 
+*Refer to the schema.prisma for the types that are used for the models.*
+
+### Get Details about an exam:
+
 ```
 /api/exam/[examname]
 ```
+Exam name must be one of: Technician, General, Extra
 
-Returns details about the exam.
+### Get a single question:
+
+```
+/api/question/[questionId]
+```
+questionId is the ID of the question which must be uppercase and five characters long. Such as: T1F05 or T2A01. 
+
+### Get a list of questions:
+
+```
+/api/questions/questions?q=[question list]
+```
+
+questionList is a comma seperated list of questions. This enpoint returns an array of questions.
+
+### Get all questions from a group:
+
+```
+/api/questions/group?g=[groupId]
+```
+
+groupId is the three character group Id, such as T1A. This endpoint will return an array of questions.
+
+### Get all questions from a subelement:
+
+```
+/api/questions/subelement?s=[subelementId]
+```
+
+subelementId is the id of the subelement to get. This endpoint will return an array of questions.
+
 
 ## Prisma
 
