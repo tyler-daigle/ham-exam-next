@@ -13,16 +13,24 @@ export default async function handler(
   // replace all the choice0, etc. to just use choices
   // answer is now correctAnswer
   try {
-    const result = await prisma.question.findFirstOrThrow({ where: { questionId: questionId } });
-    const question: IQuestion = {
-      id: result.questionId,
-      text: result.questionText,
-      choices: [result.choice0, result.choice1, result.choice2, result.choice3],
-      answer: result.answer,
-      subelement: result.subelement,
-      group: result.group
-    };
-    res.status(200).json(question);
+    const result = await prisma.question.findFirstOrThrow({
+      where: {
+        questionId: questionId
+      },
+      include: {
+        choices: true
+      }
+    });
+
+    // const question: IQuestion = {
+    //   id: result.questionId,
+    //   text: result.questionText,
+    //   answer: result.correctAnswer,
+    //   subelement: result.subelement,
+    //   group: result.group,
+    //   choices: result.choices.map(choice => choice.text)
+    // };
+    res.status(200).json(result);
   } catch (e) {
     res.status(404).json({ message: `Question ${questionId} not found` });
   }

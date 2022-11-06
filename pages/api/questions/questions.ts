@@ -18,7 +18,17 @@ export default async function questions(req: NextApiRequest, res: NextApiRespons
     const questionList = req.query.q!.toString().split(",");
     const queryParser = z.string().length(5).array().nonempty();
     queryParser.parse(questionList);
-    const data = await prisma.question.findMany({ where: { questionId: { in: questionList } } });
+    const data = await prisma.question.findMany({
+      where: {
+        questionId: {
+          in: questionList
+        },
+      },
+      include: {
+        choices: true
+      }
+    });
+
     res.status(200).json({ questions: data });
   } catch (e) {
     res.status(404).json({ msg: "invalid input" });
