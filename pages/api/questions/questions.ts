@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../db_util/db";
-import { IQuestion } from "../../../types/types";
 import { z } from "zod";
 
 
@@ -29,7 +28,7 @@ export default async function questions(req: NextApiRequest, res: NextApiRespons
       }
     });
 
-    res.status(200).json({ questions: data });
+    res.status(200).json(data);
   } catch (e) {
     res.status(404).json({ msg: "invalid input" });
     return;

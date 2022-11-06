@@ -1,4 +1,5 @@
 import styles from "@/styles/QuestionChoices.module.css";
+import { Choice } from "@prisma/client";
 import { useState } from "react";
 
 /*
@@ -11,23 +12,22 @@ import { useState } from "react";
 // values would be set.
 
 export interface Props {
-  choices: string[]
+  choices: Choice[]
 }
-
 
 export default function QuestionChoices({ choices }: Props) {
   const [selectedAnswer, setSelectedAnswer] = useState<number>();
 
   return (
     <ol className={styles.questionChoiceList}>
-      {choices.map((choice, index) => (
-        <li key={`${choice}${index}`} className={styles.choiceItem}>
+      {choices.map((choice) => (
+        <li key={`${choice.id}`} className={styles.choiceItem}>
           <input
             type="checkbox"
-            checked={selectedAnswer === index}
-            onChange={() => setSelectedAnswer(index)}
+            checked={selectedAnswer === choice.answerIndex}
+            onChange={() => setSelectedAnswer(choice.answerIndex)}
           />
-          {choice}
+          {choice.text}
         </li>
       ))}
     </ol>

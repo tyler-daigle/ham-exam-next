@@ -1,11 +1,12 @@
 import styles from "@/styles/QuestionItem.module.css";
 
 import QuestionText from "@/components/QuestionText";
-import { IQuestion } from "@/types/types";
+import { Choice, Question as PrismaQuestion } from "@prisma/client";
+import { QuestionWithChoices } from "@/types/types";
 import React from "react";
 
 export interface Props {
-  question: IQuestion;
+  question: QuestionWithChoices;
   selectedAnswer: number | null;
   hideHelp: boolean
 }
@@ -17,8 +18,8 @@ export default function QuestionItemViewOnly({ question, selectedAnswer = null, 
       <div className={styles.questionDetails} style={{ justifyContent: "flex-end" }}>
         <span className={styles.questionId} >{question.id}</span>
       </div>
-      <QuestionText>{question.text}</QuestionText>
-      <QuestionChoicesViewOnly choices={question.choices} correctAnswer={question.answer} selectedAnswer={selectedAnswer} />
+      <QuestionText>{question.questionText}</QuestionText>
+      <QuestionChoicesViewOnly choices={question.choices} correctAnswer={question.correctAnswer} selectedAnswer={selectedAnswer} />
       {!hideHelp && <span className={styles.helpLink}>Get help with this question.</span>}
     </QuestionItemViewOnlyContainer>);
 }
@@ -39,7 +40,7 @@ function QuestionItemViewOnlyContainer({ children }: { children: React.ReactNode
 }
 
 interface QuestionChoicesViewOnlyProps extends React.PropsWithChildren {
-  choices: string[];
+  choices: Choice[];
   correctAnswer: number | null;
   selectedAnswer: number | null;
 }
@@ -60,18 +61,18 @@ function QuestionChoicesViewOnly({ choices, correctAnswer, selectedAnswer }: Que
 
   return (
     <ol style={style as React.CSSProperties}>
-      {choices.map((choice, index) => <QuestionChoiceItem key={`${choice}${index}`} questionText={choice} correct={correctAnswer === index} wrong={correctAnswer !== selectedAnswer && index === selectedAnswer} />)}
+      {choices.map((choice, index) => <QuestionChoiceItem key={`${choice.id}${index}`} choiceText={choice.text} correct={correctAnswer === index} wrong={correctAnswer !== selectedAnswer && index === selectedAnswer} />)}
     </ol>
   )
 }
 
 interface QuestionChoiceProps {
-  questionText: string;
+  choiceText: string;
   correct: boolean;
   wrong: boolean;
 }
 
-function QuestionChoiceItem({ questionText, correct, wrong }: QuestionChoiceProps) {
+function QuestionChoiceItem({ choiceText, correct, wrong }: QuestionChoiceProps) {
   const correctStyle = {
     border: "dashed 2px var(--bright-green)",
     padding: "0.5rem",
@@ -94,7 +95,7 @@ function QuestionChoiceItem({ questionText, correct, wrong }: QuestionChoiceProp
   }
 
 
-  return <li><div style={style}>{questionText}</div></li>
+  return <li><div style={style}>{choiceText}</div></li>
 }
 
 function QuestionLegend() {

@@ -30,11 +30,11 @@ model Question {
 }
 
 model Choice {
-  id          Int       @id @default(autoincrement())
-  answerIndex Int       @default(1)
-  text        String
-  Question    Question? @relation(fields: [questionId], references: [id])
-  questionId  Int?
+  id         Int       @id @default(autoincrement())
+  answerInde Int       @default(1)
+  text       String
+  Question   Question? @relation(fields: [questionId], references: [id])
+  questionId Int?
 }
 
 model Group {

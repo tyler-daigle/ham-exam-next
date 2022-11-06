@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../db_util/db";
-import { IQuestion } from "../../../types/types";
 import { z } from "zod";
 
 
@@ -15,11 +14,21 @@ export default async function subelement(req: NextApiRequest, res: NextApiRespon
 
   try {
     const subelement = req.query.s!.toString();
-    const queryParser = z.string();
+    const queryParser = z.string().length(2);
     queryParser.parse(subelement);
-    
-    const data = await prisma.question.findMany({ where: { subelement: subelement }, orderBy: {questionId: "asc"} });
-    res.status(200).json({ questions: data });
+
+    const data = await prisma.question.findMany({
+      where: {
+        subelement: subelement
+      },
+      orderBy: {
+        questionId: "asc"
+      },
+      include: {
+        choices: true
+      }
+    });
+    res.status(200).json(data);
   } catch (e) {
     res.status(404).json({ msg: "invalid input" });
     return;
