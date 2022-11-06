@@ -135,4 +135,14 @@ the database using Prisma.
 *As of right now only the Technician questions are added. Once that is working the other tests will be added and the scripts (or the JSON) files
  will have to be changed because the scripts are manually importing the tech-question JSON files.*
 
+## Format of the Question data once it is added to Prisma:
+
+The format of the questions is pretty much the same as it is in the JSON, except for the answer choices.
+
+There is a correctAnswer field of the Question model. This holds the index of the correct choice. 
+Each Choice object has a answerIndex which is the choice's position in the original array in the JSON
+data. This way you can just match up the Question.correctAnswer to the choice[].answerIndex to find
+the correct answer. The reason for doing it this way is because it might be possible for the choices to
+be in a different order when they are retrieved from the database. If you just use the index and the
+choices are in a different order then the answerIndex might not point to the correct choice.
 
