@@ -4,24 +4,30 @@ import QuestionContainer from "@/components/QuestionContainer";
 import QuestionText from "@/components/QuestionText";
 import QuestionChoices from "@/components/QuestionChoices";
 
-import { IQuestion } from "@/types/types";
+import { QuestionWithChoices } from "@/types/types";
 
 export interface Props {
-  question: IQuestion;
-  index: number;
+
+  children: React.ReactNode;
 }
 
-export default function QuestionItem({ question, index }: Props) {
+// TODO: make a seperate header component for the questions that will show the ID and the current question index (such as 1 of 37)
+
+export default function QuestionItem({ children }: Props) {
 
   return (
     <QuestionContainer>
-      <div className={styles.questionDetails}>
+      {
+      // TODO: Extract this out
+      /* <div className={styles.questionDetails}>
         <span className={styles.questionIndex}>Question {index + 1} of 37</span>
         <span className={styles.questionId}>{question.id}</span>
-      </div>
+      </div> */}
 
-      <QuestionText>{question.text}</QuestionText>
-      <QuestionChoices choices={question.choices} />
+
+      {children}
+      {/* <QuestionChoices choices={question.choices} /> */}
     </QuestionContainer>
   );
 }
+
