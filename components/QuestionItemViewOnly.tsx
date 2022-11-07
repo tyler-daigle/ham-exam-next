@@ -1,3 +1,6 @@
+// TODO: Get rid of this once the styles are moved somewhere else
+
+
 import styles from "@/styles/QuestionItem.module.css";
 
 import QuestionText from "@/components/QuestionText";
