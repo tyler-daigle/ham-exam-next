@@ -1,0 +1,282 @@
+[
+  {
+    "id": 384,
+    "questionId": "T0A12",
+    "questionText": "Which of the following precautions should be taken when measuring high voltages with a voltmeter?",
+    "subelement": "T0",
+    "group": "T0A",
+    "correctAnswer": 1
+  },
+  {
+    "id": 395,
+    "questionId": "T0B11",
+    "questionText": "Which of the following establishes grounding requirements for an amateur radio tower or antenna?",
+    "subelement": "T0",
+    "group": "T0B",
+    "correctAnswer": 1
+  },
+  {
+    "id": 406,
+    "questionId": "T0C11",
+    "questionText": "What is the definition of duty cycle during the averaging time for RF exposure?",
+    "subelement": "T0",
+    "group": "T0C",
+    "correctAnswer": 2
+  },
+  {
+    "id": 409,
+    "questionId": "T1A02",
+    "questionText": "Which agency regulates and enforces the rules for the Amateur Radio Service in the United States?",
+    "subelement": "T1",
+    "group": "T1A",
+    "correctAnswer": 2
+  },
+  {
+    "id": 19,
+    "questionId": "T1B11",
+    "questionText": "What is the maximum peak envelope power output for Technician class operators in their HF band segments?",
+    "subelement": "T1",
+    "group": "T1B",
+    "correctAnswer": 0
+  },
+  {
+    "id": 30,
+    "questionId": "T1C10",
+    "questionText": "How soon after passing the examination for your first amateur radio license may you transmit on the amateur radio bands?",
+    "subelement": "T1",
+    "group": "T1C",
+    "correctAnswer": 2
+  },
+  {
+    "id": 34,
+    "questionId": "T1D03",
+    "questionText": "When is it permissible to transmit messages encoded to obscure their meaning?",
+    "subelement": "T1",
+    "group": "T1D",
+    "correctAnswer": 2
+  },
+  {
+    "id": 46,
+    "questionId": "T1E04",
+    "questionText": "What determines the transmitting frequency privileges of an amateur station?",
+    "subelement": "T1",
+    "group": "T1E",
+    "correctAnswer": 3
+  },
+  {
+    "id": 59,
+    "questionId": "T1F06",
+    "questionText": "Which of the following self-assigned indicators are acceptable when using a phone transmission?",
+    "subelement": "T1",
+    "group": "T1F",
+    "correctAnswer": 3
+  },
+  {
+    "id": 75,
+    "questionId": "T2A11",
+    "questionText": "What term describes an amateur station that is transmitting and receiving on the same frequency?",
+    "subelement": "T2",
+    "group": "T2A",
+    "correctAnswer": 2
+  },
+  {
+    "id": 81,
+    "questionId": "T2B05",
+    "questionText": "What would cause your FM transmission audio to be distorted on voice peaks?",
+    "subelement": "T2",
+    "group": "T2B",
+    "correctAnswer": 2
+  },
+  {
+    "id": 91,
+    "questionId": "T2C02",
+    "questionText": "Which of the following are typical duties of a Net Control Station?",
+    "subelement": "T2",
+    "group": "T2C",
+    "correctAnswer": 2
+  },
+  {
+    "id": 110,
+    "questionId": "T3A10",
+    "questionText": "What effect does multi-path propagation have on data transmissions?",
+    "subelement": "T3",
+    "group": "T3A",
+    "correctAnswer": 3
+  },
+  {
+    "id": 114,
+    "questionId": "T3B02",
+    "questionText": "What property of a radio wave defines its polarization?",
+    "subelement": "T3",
+    "group": "T3B",
+    "correctAnswer": 0
+  },
+  {
+    "id": 132,
+    "questionId": "T3C09",
+    "questionText": "What is generally the best time for long-distance 10 meter band propagation via the F region?",
+    "subelement": "T3",
+    "group": "T3C",
+    "correctAnswer": 0
+  },
+  {
+    "id": 144,
+    "questionId": "T4A10",
+    "questionText": "What function is performed with a transceiver and a digital mode hot spot?",
+    "subelement": "T4",
+    "group": "T4A",
+    "correctAnswer": 0
+  },
+  {
+    "id": 150,
+    "questionId": "T4B04",
+    "questionText": "What is a way to enable quick access to a favorite frequency or channel on your transceiver?",
+    "subelement": "T4",
+    "group": "T4B",
+    "correctAnswer": 1
+  },
+  {
+    "id": 164,
+    "questionId": "T5A06",
+    "questionText": "What is the unit of frequency?",
+    "subelement": "T5",
+    "group": "T5A",
+    "correctAnswer": 0
+  },
+  {
+    "id": 181,
+    "questionId": "T5B11",
+    "questionText": "Which decibel value represents a power increase from 20 watts to 200 watts?",
+    "subelement": "T5",
+    "group": "T5B",
+    "correctAnswer": 0
+  },
+  {
+    "id": 188,
+    "questionId": "T5C05",
+    "questionText": "What is the unit of impedance?",
+    "subelement": "T5",
+    "group": "T5C",
+    "correctAnswer": 3
+  },
+  {
+    "id": 197,
+    "questionId": "T5D01",
+    "questionText": "What formula is used to calculate current in a circuit?",
+    "subelement": "T5",
+    "group": "T5D",
+    "correctAnswer": 1
+  },
+  {
+    "id": 212,
+    "questionId": "T6A02",
+    "questionText": "What type of component is often used as an adjustable volume control?",
+    "subelement": "T6",
+    "group": "T6A",
+    "correctAnswer": 2
+  },
+  {
+    "id": 228,
+    "questionId": "T6B06",
+    "questionText": "How is the cathode lead of a semiconductor diode often marked on the package?",
+    "subelement": "T6",
+    "group": "T6B",
+    "correctAnswer": 1
+  },
+  {
+    "id": 238,
+    "questionId": "T6C04",
+    "questionText": "What is component 3 in figure T-1?",
+    "subelement": "T6",
+    "group": "T6C",
+    "correctAnswer": 2
+  },
+  {
+    "id": 252,
+    "questionId": "T6D06",
+    "questionText": "What component changes 120 V AC power to a lower AC voltage for other uses?",
+    "subelement": "T6",
+    "group": "T6D",
+    "correctAnswer": 1
+  },
+  {
+    "id": 262,
+    "questionId": "T7A05",
+    "questionText": "What is the name of a circuit that generates a signal at a specific frequency?",
+    "subelement": "T7",
+    "group": "T7A",
+    "correctAnswer": 3
+  },
+  {
+    "id": 269,
+    "questionId": "T7B01",
+    "questionText": "What can you do if you are told your FM handheld or mobile transceiver is over-deviating?",
+    "subelement": "T7",
+    "group": "T7B",
+    "correctAnswer": 3
+  },
+  {
+    "id": 284,
+    "questionId": "T7C05",
+    "questionText": "Why do most solid-state transmitters reduce output power as SWR increases beyond a certain level?",
+    "subelement": "T7",
+    "group": "T7C",
+    "correctAnswer": 0
+  },
+  {
+    "id": 299,
+    "questionId": "T7D10",
+    "questionText": "What reading indicates that an ohmmeter is connected across a large, discharged capacitor?",
+    "subelement": "T7",
+    "group": "T7D",
+    "correctAnswer": 0
+  },
+  {
+    "id": 306,
+    "questionId": "T8A06",
+    "questionText": "Which sideband is normally used for 10 meter HF, VHF, and UHF single-sideband communications?",
+    "subelement": "T8",
+    "group": "T8A",
+    "correctAnswer": 0
+  },
+  {
+    "id": 313,
+    "questionId": "T8B01",
+    "questionText": "What telemetry information is typically transmitted by satellite beacons?",
+    "subelement": "T8",
+    "group": "T8B",
+    "correctAnswer": 2
+  },
+  {
+    "id": 326,
+    "questionId": "T8C02",
+    "questionText": "Which of these items would be useful for a hidden transmitter hunt?",
+    "subelement": "T8",
+    "group": "T8C",
+    "correctAnswer": 1
+  },
+  {
+    "id": 338,
+    "questionId": "T8D03",
+    "questionText": "What kind of data can be transmitted by APRS?",
+    "subelement": "T8",
+    "group": "T8D",
+    "correctAnswer": 3
+  },
+  {
+    "id": 356,
+    "questionId": "T9A08",
+    "questionText": "What is the approximate length, in inches, of a quarter-wavelength vertical antenna for 146 MHz?",
+    "subelement": "T9",
+    "group": "T9A",
+    "correctAnswer": 2
+  },
+  {
+    "id": 363,
+    "questionId": "T9B03",
+    "questionText": "Why is coaxial cable the most common feed line for amateur radio antenna systems?",
+    "subelement": "T9",
+    "group": "T9B",
+    "correctAnswer": 0
+  }
+]
