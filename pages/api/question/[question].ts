@@ -8,9 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const questionId = req.query.question!.toString();
-  // TODO: change the query to {include: {choices: true}}
-  // replace all the choice0, etc. to just use choices
-  // answer is now correctAnswer
+
   try {
     const result = await prisma.question.findFirstOrThrow({
       where: {

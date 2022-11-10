@@ -105,7 +105,12 @@ subelementId is the id of the subelement to get. This endpoint will return an ar
     _make sure @prisma/client is installed_
     This also has to be run after **git clone** or **npm install** because the prisma client is stored in node_modules which does not get checked into git.
 
-    DATABASE_URL="file:./dev.db also has to be set in the .env file (which also isn't checked into git)
+    **Don't forget to set the environment variable!**
+    
+    ```
+    DATABASE_URL=file:./dev.db 
+    ```
+    also has to be set in the .env file (which also isn't checked into git)
 
     ```shell
     $ npx prisma generate
