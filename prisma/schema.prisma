@@ -11,22 +11,24 @@ datasource db {
 }
 
 model Exam {
-  id              Int          @id @default(autoincrement())
-  examId          Int          @unique
-  name            String       @unique
+  id              Int             @id @default(autoincrement())
+  examId          Int             @unique
+  name            String          @unique
   numberQuestions Int
   requiredCorrect Int
   subelements     Subelement[]
+  GeneratedExam   GeneratedExam[]
 }
 
 model Question {
-  id            Int      @id @default(autoincrement())
-  questionId    String   @unique
+  id            Int            @id @default(autoincrement())
+  questionId    String         @unique
   questionText  String
   subelement    String
   group         String
-  correctAnswer Int      @default(1)
+  correctAnswer Int            @default(1)
   choices       Choice[]
+  QuestionList  QuestionList[]
 }
 
 model Choice {
@@ -55,4 +57,20 @@ model Subelement {
   groups            Group[]
   exam              Exam    @relation(fields: [examId], references: [examId])
   examId            Int     @default(1)
+}
+
+model GeneratedExam {
+  id           Int            @id @default(autoincrement())
+  exam         Exam           @relation(fields: [examId], references: [examId])
+  examId       Int            @default(1)
+  QuestionList QuestionList[]
+}
+
+model QuestionList {
+  id              Int           @id @default(autoincrement())
+  generatedExam   GeneratedExam @relation(fields: [generatedExamId], references: [id])
+  generatedExamId Int
+
+  question   Question @relation(fields: [questionId], references: [questionId])
+  questionId String
 }
