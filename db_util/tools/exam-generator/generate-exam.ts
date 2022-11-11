@@ -52,7 +52,7 @@ async function main() {
     console.log("SOMETHING WENT WRONG!!!", e);
   }
   console.log(JSON.stringify(questionList));
-  console.log("Number of questions: ", questionList.length)
+
 }
 
 main();
