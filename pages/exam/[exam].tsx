@@ -1,31 +1,65 @@
+import MainContainer from "@/components/UI/MainContainer";
 import { PrismaClient, Question } from "@prisma/client";
 import { prisma } from "db_util/db";
+import QuestionContainer from "@/components/QuestionContainer";
+import QuestionHeader from "@/components/QuestionHeader";
+import GreenText from "@/components/UI/GreenText";
+import QuestionText from "@/components/QuestionText";
+import QuestionChoicesWithSelect from "@/components/QuestionChoicesWithSelect";
+
+import { QuestionWithChoices } from "@/types/types";
 
 export interface Props {
   exam: number;
-  questionList: Question[];
+  questionList: QuestionWithChoices[];
+  numberQuestions: number;
 }
 
 
-export default function ExamPage({ exam, questionList }: Props) {
-  console.log(questionList);
+export default function ExamPage({ exam, questionList, numberQuestions }: Props) {
   return (
-    <div>
-      <h1>This is an exam!</h1>
-      <h2>ID: {exam}</h2>
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+    <MainContainer>
+      <div>
+        <h1>This is an exam!</h1>
+        <h2>ID: {exam}</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      {questionList.map((question, index) =>
+        <QuestionContainer key={question.id}>
+          <QuestionHeader>
+            <GreenText>{question.questionId}</GreenText>
+            <GreenText>{index + 1} of {numberQuestions}</GreenText>
+          </QuestionHeader>
+          <QuestionText>{question.questionText}</QuestionText>
+          <QuestionChoicesWithSelect choices={question.choices} />
+        </QuestionContainer>
+      )}
+    </MainContainer>
+
+
   )
 }
 
+// this just gets the technician exams
 
 export async function getStaticPaths() {
   // const prisma = new PrismaClient();
   // get the IDs of each of the generated exams from the database
   // the ID is then sent to getStaticProps()
 
-  const examData = await prisma.generatedExam.findMany();
-  const examList = examData.map(exam => ({ params: { exam: exam.examId.toString() } }));
+  // TODO: make a seperate page for each exam type: /exam/technician/0
+  // /exam/general/0, etc...
+
+  const examData = await prisma.generatedExam.findMany(
+    {
+      where: {
+        examId: 0 // examId is the ID for the type of exam: Technician, General or Extra
+      }
+    });
+
+  // exam.id is the actual ID of the generated exam that matches up with the questionlist table
+  const examList = examData.map(exam => ({ params: { exam: exam.id.toString() } }));
   console.log(examList);
 
   return {
@@ -50,7 +84,7 @@ export async function getStaticProps({ params }: Params) {
   try {
     const examData = await prisma.generatedExam.findFirst({
       where: {
-        examId: examId
+        id: examId
       },
       include: {
         QuestionList: {
@@ -69,11 +103,12 @@ export async function getStaticProps({ params }: Params) {
       }
     });
 
-    console.dir(examData);
+    console.log("HERE: ", examData);
     return {
       props: {
         exam: examData?.exam.name,
-        questionList: examData?.QuestionList.map(question => question.question)
+        questionList: examData?.QuestionList.map(question => question.question), // the data returned is from the QuestionList table - we just want the question data
+        numberQuestions: examData?.exam.numberQuestions
       }
     }
   } catch (e) {

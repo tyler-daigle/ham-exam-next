@@ -2,7 +2,16 @@ import { prisma } from "../../db";
 import { GeneratedExam, Question } from "@prisma/client";
 import { readFileSync } from "fs";
 
-const examList = ["test-exam.json"];
+const examList = [
+  "test2-tech.json",
+  "test3-tech.json",
+  "test4-tech.json",
+  "test5-tech.json",
+  "test6-tech.json",
+  "test7-tech.json",
+  "test8-tech.json",
+  "test9-tech.json"
+];
 
 enum ExamType {
   TECHNICIAN = 0,

@@ -11,7 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../../db");
 const fs_1 = require("fs");
-const examList = ["test-exam.json"];
+const examList = [
+    "test2-tech.json",
+    "test3-tech.json",
+    "test4-tech.json",
+    "test5-tech.json",
+    "test6-tech.json",
+    "test7-tech.json",
+    "test8-tech.json",
+    "test9-tech.json"
+];
 var ExamType;
 (function (ExamType) {
     ExamType[ExamType["TECHNICIAN"] = 0] = "TECHNICIAN";
