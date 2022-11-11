@@ -1,5 +1,5 @@
 import { PrismaClient, Question } from "@prisma/client";
-
+import { prisma } from "db_util/db";
 
 export interface Props {
   exam: number;
@@ -8,6 +8,7 @@ export interface Props {
 
 
 export default function ExamPage({ exam, questionList }: Props) {
+  console.log(questionList);
   return (
     <div>
       <h1>This is an exam!</h1>
@@ -19,7 +20,7 @@ export default function ExamPage({ exam, questionList }: Props) {
 
 
 export async function getStaticPaths() {
-  const prisma = new PrismaClient();
+  // const prisma = new PrismaClient();
   // get the IDs of each of the generated exams from the database
   // the ID is then sent to getStaticProps()
 
@@ -42,24 +43,46 @@ interface Params {
 
 export async function getStaticProps({ params }: Params) {
   const examId = parseInt(params.exam);
-  const prisma = new PrismaClient();
+  // const prisma = new PrismaClient();
 
   // get all the questions from the exam with id of examId
+  // const question = prisma.question.findFirst();
+  try {
+    const examData = await prisma.generatedExam.findFirst({
+      where: {
+        examId: examId
+      },
+      include: {
+        QuestionList: {
+          include: {
+            question: {
+              include: {
+                choices: true
+              },
+            },
+          },
+          orderBy: {
+            questionId: "asc"
+          }
+        },
+        exam: true
+      }
+    });
 
-  const questions = await prisma.generatedExam.findFirst({
-    where: {
-      examId: examId
-    },
-    include: {
-      QuestionList: true
+    console.dir(examData);
+    return {
+      props: {
+        exam: examData?.exam.name,
+        questionList: examData?.QuestionList.map(question => question.question)
+      }
     }
-  });
-
-  console.log(questions);
-
-  return {
-    props: {
-      exam: "The exam!"
+  } catch (e) {
+    console.log("ERROR fetching questions: ", e);
+    return {
+      props: {
+        exam: "Error"
+      }
     }
   }
+
 }
