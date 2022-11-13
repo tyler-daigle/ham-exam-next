@@ -7,7 +7,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const questionId = req.query.question!.toString();
+  const questionId = req.query.question!.toString().toUpperCase();
 
   try {
     const result = await prisma.question.findFirstOrThrow({
