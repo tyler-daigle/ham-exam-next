@@ -1,6 +1,4 @@
-.primaryButton {
-  background-color: var(--button-bg-color);
-  color: var(--button-fg-color);
+.button {
   border: none;
   font-family: inherit;
   padding: 0.5rem 2rem;
@@ -8,6 +6,18 @@
   font-size: 1.2rem;
 }
 
+.primaryButton {
+  background-color: var(--button-bg-color);
+  color: var(--button-fg-color);
+}
+
 .primaryButton:active {
   filter: brightness(70%);
+}
+.disabledButton {
+  background-color: gray;
+  color: darkgray;
+}
+.disabledButton:active {
+  background-color: slategray;
 }
