@@ -1,4 +1,6 @@
 .examHeader {
   color: var(--exam-header-color);
   font-size: 1rem;
+  border-bottom: solid 1px var(--exam-header-color);
+  padding: 1rem;
 }
