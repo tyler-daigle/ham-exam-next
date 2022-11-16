@@ -1,47 +1,61 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "@/styles/ExamSelector.module.css";
+import { ExamTypes } from "@/types/types";
+
+import { examAtom } from "state/atoms";
+import { useAtom } from "jotai";
 
 import Button from "./UI/Button";
 
 export default function ExamSelector() {
-  const [techVisible, setTechVisible] = useState(false);
-  const [generalVisible, setGeneralVisible] = useState(false);
-  const [extraVisible, setExtraVisible] = useState(false);
+  const [visibleExam, setVisibleExam] = useState(false);
+  const [examType, setExamType] = useAtom(examAtom);
+
+  const toggleExamType = (examName: ExamTypes) => {
+    console.log("Ok");
+    setVisibleExam(true);
+    setExamType(examName);
+  };
 
   return (
-    <ul className={styles.selectorContainer}>
-      <li className={styles.examItem}>
-        <Button onClick={() => setTechVisible(!techVisible)}>Technician</Button>
-        <p className={styles.examDetails}>
-          This is the first level of amateur license.
-        </p>
+    <>
 
-        <div className={techVisible ? `${styles.examDirections} ${styles.examDirectionsToggle}` : styles.examDirections}>
-          <p>
-            There are <strong>35 questions</strong> on the Technician Exam. You must get at least <strong>26 correct</strong> in order
-            to pass.
+      <ul className={styles.selectorContainer}>
+        <li className={styles.examItem}>
+          <Button onClick={() => toggleExamType(ExamTypes.TECHNICIAN)}>Technician</Button>
+          <p className={styles.examDetails}>
+            This is the first level of amateur license.
           </p>
-          <Link className={styles.examLink} href="/exam">Click here to begin the exam.</Link>
+        </li>
+
+        <li className={styles.examItem}>
+          <Button onClick={() => toggleExamType(ExamTypes.GENERAL)} >General</Button>
+          <p className={styles.examDetails}>
+            <strong>General</strong> is your next step after <strong>Technician</strong>.
+          </p>
+
+
+        </li>
+
+        <li className={styles.examItem}>
+          <Button onClick={() => toggleExamType(ExamTypes.EXTRA)} disabled>Extra</Button>
+          <p className={styles.examDetails}>
+            <strong>Extra</strong> is obtainable after <strong>General</strong>.
+          </p>
+        </li>
+      </ul>
+
+      {visibleExam && (
+        <div className={styles.examDirections}>
+          <p>
+            You have chosen the <strong>{examType}</strong> exam.
+          </p>
+          <Link className={styles.examLink} href="/exam">Click here to begin the {examType} exam.</Link>
         </div>
-
-      </li>
-
-      <li className={styles.examItem}>
-        <Button onClick={() => setGeneralVisible(!generalVisible)} disabled>General</Button>
-        <p className={styles.examDetails}>
-          <strong>General</strong> is your next step after <strong>Technician</strong>.
-        </p>
-      </li>
-
-      <li className={styles.examItem}>
-        <Button onClick={() => setExtraVisible(!extraVisible)} disabled>Extra</Button>
-        <p className={styles.examDetails}>
-          <strong>Extra</strong> is obtainable after <strong>General</strong>.
-        </p>
-      </li>
+      )}
 
 
-    </ul>
+    </>
   )
 }

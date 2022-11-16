@@ -18,20 +18,16 @@
 }
 
 .examDirections {
+  margin-top: var(--default-spacing);
   background-color: var(--question-container-bg);
   border: solid 1px var(--question-container-border);
   grid-column: 1/3;
   padding: 0.5rem;
   border-radius: 5px;
-  display: none;
 }
 
 .examDirections strong {
   color: white;
-}
-
-.examDirectionsToggle {
-  display: block;
 }
 
 .examLink {
