@@ -5,7 +5,7 @@ export interface QuestionWithChoices extends PrismaQuestion {
 }
 
 export enum ExamTypes {
-  TECHNICIAN = "Technician",
-  GENERAL = "General",
-  EXTRA = "Extra"
+  TECHNICIAN = "technician",
+  GENERAL = "general",
+  EXTRA = "extra"
 };

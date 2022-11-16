@@ -40,3 +40,7 @@ body {
 p {
   line-height: var(--default-line-heght);
 }
+
+.capitalize {
+  text-transform: capitalize;
+}

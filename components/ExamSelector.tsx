@@ -49,9 +49,9 @@ export default function ExamSelector() {
       {visibleExam && (
         <div className={styles.examDirections}>
           <p>
-            You have chosen the <strong>{examType}</strong> exam.
+            You have chosen the <strong className="capitalize">{examType}</strong> exam.
           </p>
-          <Link className={styles.examLink} href="/exam">Click here to begin the {examType} exam.</Link>
+          <Link className={styles.examLink} href="/exam">Click here to begin the <span className="capitalize">{examType}</span> exam.</Link>
         </div>
       )}
 

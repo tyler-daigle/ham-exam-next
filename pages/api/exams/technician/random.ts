@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     });
 
-    res.status(200).json(exam);
+    res.status(200).json(exam[0]);
   } catch (e) {
     res.status(404).json({ msg: "Failed to get a random test..." });
   }

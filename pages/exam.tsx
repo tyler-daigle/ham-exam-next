@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { examAtom } from "state/atoms";
 import { useAtom } from "jotai";
+import { useQuery } from "react-query";
 
 // TODO: this page will fetch all the exam questions for the random test (using react-query)
 // and then display the question list.
@@ -17,10 +18,14 @@ import { useAtom } from "jotai";
 
 export default function Exam() {
   const examAnswers = new Map<string, number>();
-
   const [savedAnswers, setSavedAnswers] = useState<React.ReactNode[]>([]);
-
   const [examName, setExamName] = useAtom(examAtom);
+
+  const { isLoading, error, data } = useQuery(examName, async () => {
+    const res = await fetch(`http://localhost:3000/api/exams/${examName}/random`);
+    const json = await res.json();
+    return json;
+  });
 
   const checkAnswers = () => {
     examAnswers.set("T1A01", 0);
@@ -39,9 +44,24 @@ export default function Exam() {
     // calculate the grade.
   }
 
+  if (isLoading) {
+    return <div>Loading...</div>
+  } else {
+    console.log(data);
+  }
+
+  if (error) {
+    return (
+      <>
+        <div>Error: {error.toString()}</div>
+      </>
+    )
+  }
   return (
     <div>
-      The exam name is {examName}.
+      <p>Got {data.QuestionList.length} questions.
+        The exam name is {examName}. ID: {data.id}
+      </p>
       <button type="button" onClick={() => checkAnswers()}>Check Answers</button>
 
       <ul>
