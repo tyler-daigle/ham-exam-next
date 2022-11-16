@@ -14,6 +14,8 @@ export default function ExamSelector() {
 
   const toggleExamType = (examName: ExamTypes) => {
     console.log("Ok");
+    // TODO: have to get details of the exam from the api and
+    // set the number of questions in global state
     setVisibleExam(true);
     setExamType(examName);
   };

@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 
-import { examAtom } from "state/atoms";
+import { examAtom, answersAtom } from "state/atoms";
 import { useAtom } from "jotai";
 import { useQuery } from "react-query";
+import { QuestionWithChoices } from "@/types/types";
+import { GeneratedExam } from "@prisma/client";
+import QuestionChoices from "@/components/QuestionChoices";
+import QuestionContainer from "@/components/QuestionContainer";
+import QuestionHeader from "@/components/QuestionHeader";
+import QuestionText from "@/components/QuestionText";
+import GreenText from "@/components/UI/GreenText";
+import QuestionChoicesWithSelect from "@/components/QuestionChoicesWithSelect";
+import MainLayout from "Layouts/MainLayout";
+import PageHeader from "@/components/PageHeader";
+import Button from "@/components/UI/Button";
+import { useRouter } from "next/router";
 
 // TODO: this page will fetch all the exam questions for the random test (using react-query)
 // and then display the question list.
@@ -17,37 +29,32 @@ import { useQuery } from "react-query";
 // how do you force react-query to refetch data again?
 
 export default function Exam() {
+  // use a map that will store the answers to the questions, once the test is submitted this
+  // map is saved to the global state where it can then be checked for correct answers.
   const examAnswers = new Map<string, number>();
-  const [savedAnswers, setSavedAnswers] = useState<React.ReactNode[]>([]);
-  const [examName, setExamName] = useAtom(examAtom);
+  const [answersMap, setAnswersMap] = useAtom(answersAtom);
+  const [examName] = useAtom(examAtom);
+  const router = useRouter();
 
+  // query to load the random exam questions
   const { isLoading, error, data } = useQuery(examName, async () => {
     const res = await fetch(`http://localhost:3000/api/exams/${examName}/random`);
     const json = await res.json();
-    return json;
+
+    // get just the questions
+    const questions: QuestionWithChoices[] = json.QuestionList.map((q: any) => q.question);
+    return questions
   });
 
-  const checkAnswers = () => {
-    examAnswers.set("T1A01", 0);
-    examAnswers.set("T1A02", 1);
-    examAnswers.set("T1B08", 3);
-    examAnswers.set("T2B04", 1);
-    examAnswers.set("T3C01", 0);
+  const numQuestions = 35; // TODO: Get from global state
 
-    const answers = [];
-    for (const [questionId, answer] of examAnswers?.entries()) {
-      answers.push(<li>{questionId} : {answer}</li>);
-    }
-    setSavedAnswers(answers);
-
-    // TODO: this will be set in global state and then the results page can load and use the values to
-    // calculate the grade.
+  const saveAnswers = () => {
+    setAnswersMap(new Map(examAnswers));
+    router.push("/results");
   }
 
   if (isLoading) {
     return <div>Loading...</div>
-  } else {
-    console.log(data);
   }
 
   if (error) {
@@ -58,19 +65,22 @@ export default function Exam() {
     )
   }
   return (
-    <div>
-      <p>Got {data.QuestionList.length} questions.
-        The exam name is {examName}. ID: {data.id}
-      </p>
-      <button type="button" onClick={() => checkAnswers()}>Check Answers</button>
+    <MainLayout>
+      <h2><GreenText><span className="capitalize">{examName}</span> Practice Exam</GreenText></h2>
+      <p>Got {data?.length} questions. The exam name is {examName}. </p>
 
-      <ul>
-        {savedAnswers.length !== 0 ?
-          (savedAnswers) :
-          (<li>No Answers Yet</li>)
-        }
-      </ul>
-    </div>
+      {data?.map((question, index) =>
+        <QuestionContainer key={question.id}>
+          <QuestionHeader>
+            <GreenText>{question.questionId}</GreenText>
+            <GreenText>{index + 1} of {numQuestions}</GreenText>
+          </QuestionHeader>
+          <QuestionText>{question.questionText}</QuestionText>
+          <QuestionChoicesWithSelect choices={question.choices} questionId={question.questionId} answerMap={examAnswers} />
+        </QuestionContainer>
+      )}
+      <Button onClick={() => saveAnswers()}>Submit Exam</Button>
+    </MainLayout>
 
   )
 }

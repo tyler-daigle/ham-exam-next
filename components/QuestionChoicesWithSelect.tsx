@@ -1,6 +1,8 @@
 import styles from "@/styles/QuestionChoices.module.css";
 import { Choice } from "@prisma/client";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { answersAtom } from "state/atoms";
 
 /*
   should radio buttons or checkboxes be used? It is possible that
@@ -12,13 +14,18 @@ import { useState } from "react";
 // values would be set.
 
 export interface Props {
-  choices: Choice[]
-  // TODO: have to pass the ID of the question so that when the question is answered we know
-  //       which question was answered.
+  choices: Choice[];
+  questionId: string;
+  answerMap: Map<string, number>;
 }
 
-export default function QuestionChoicesWithSelect({ choices }: Props) {
+export default function QuestionChoicesWithSelect({ choices, questionId, answerMap }: Props) {
   const [selectedAnswer, setSelectedAnswer] = useState<number>();
+
+  const setAnswer = (choiceIndex: number) => {
+    setSelectedAnswer(choiceIndex);
+    answerMap.set(questionId, choiceIndex);
+  };
 
   const style = {
     display: "flex",
@@ -33,7 +40,7 @@ export default function QuestionChoicesWithSelect({ choices }: Props) {
           <input
             type="checkbox"
             checked={selectedAnswer === choice.answerIndex}
-            onChange={() => setSelectedAnswer(choice.answerIndex)}
+            onChange={() => setAnswer(choice.answerIndex)}
           />
           {choice.text}
         </li>
