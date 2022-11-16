@@ -1,0 +1,18 @@
+.selectorContainer {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.examItem {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: var(--default-spacing);
+  max-width: 400px;
+}
+
+.examDetails {
+  color: var(--bright-green);
+  font-size: 0.85rem;
+}

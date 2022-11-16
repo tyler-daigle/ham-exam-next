@@ -16,11 +16,26 @@
   --bright-pink: #f363ba;
   --light-blue: #517090;
   --bright-red: #ee444d;
+  --default-spacing: 1rem;
+  --default-line-heght: 1.5rem;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--header-color);
+  margin: var(--default-spacing) 0;
+}
 body {
   font-family: "Roboto Mono", monospace;
   background-color: var(--main-bg-color);
   color: var(--primary-text-color);
   font-size: 16px;
+}
+
+p {
+  line-height: var(--default-line-heght);
 }
