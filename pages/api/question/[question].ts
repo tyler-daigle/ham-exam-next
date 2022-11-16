@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../../db_util/db";
-import { z } from "zod";
-
+import { prisma } from "@/database/db";
 
 export default async function handler(
   req: NextApiRequest,
