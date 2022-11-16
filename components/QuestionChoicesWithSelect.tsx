@@ -42,7 +42,7 @@ export default function QuestionChoicesWithSelect({ choices, questionId, answerM
             checked={selectedAnswer === choice.answerIndex}
             onChange={() => setAnswer(choice.answerIndex)}
           />
-          {choice.text}
+          <label>{choice.text}</label>
         </li>
       ))}
     </ol>

@@ -4,15 +4,14 @@ import { examAtom, answersAtom } from "state/atoms";
 import { useAtom } from "jotai";
 import { useQuery } from "react-query";
 import { QuestionWithChoices } from "@/types/types";
-import { GeneratedExam } from "@prisma/client";
-import QuestionChoices from "@/components/QuestionChoices";
+
 import QuestionContainer from "@/components/QuestionContainer";
 import QuestionHeader from "@/components/QuestionHeader";
 import QuestionText from "@/components/QuestionText";
 import GreenText from "@/components/UI/GreenText";
 import QuestionChoicesWithSelect from "@/components/QuestionChoicesWithSelect";
 import MainLayout from "Layouts/MainLayout";
-import PageHeader from "@/components/PageHeader";
+
 import Button from "@/components/UI/Button";
 import { useRouter } from "next/router";
 
