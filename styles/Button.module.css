@@ -4,6 +4,7 @@
   padding: 0.5rem 2rem;
   border-radius: 10px;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .primaryButton {
@@ -17,7 +18,8 @@
 .disabledButton {
   background-color: gray;
   color: darkgray;
+  cursor: not-allowed;
 }
-.disabledButton:active {
+/* .disabledButton:active {
   background-color: slategray;
-}
+} */
