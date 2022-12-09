@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { examAtom, answersAtom } from "state/atoms";
+import { examAtom, answersAtom, correctAnswersAtom } from "state/atoms";
 import { useAtom } from "jotai";
 import { useQuery } from "react-query";
 import { QuestionWithChoices } from "@/types/types";
@@ -32,6 +32,7 @@ export default function Exam() {
   // map is saved to the global state where it can then be checked for correct answers.
   const examAnswers = new Map<string, number>();
   const [answersMap, setAnswersMap] = useAtom(answersAtom);
+  const [answerKey, setAnswerKey] = useAtom(correctAnswersAtom);
   const [examName] = useAtom(examAtom);
   const router = useRouter();
 
@@ -48,6 +49,20 @@ export default function Exam() {
 
     // get just the questions
     const questions: QuestionWithChoices[] = json.QuestionList.map((q: any) => q.question);
+
+    // create the answer key and save it to the atom
+    // the answer key is just the question ID and the index of the correct answer.
+    const answerKeyMap = new Map<string, number>();
+
+    // TODO: this is kind of redundant... should just save the questions recieved from
+    // the api in a map and then use that to check the answers. Rather than having
+    // another map.
+
+    questions.forEach(question => {
+      answerKeyMap.set(question.questionId, question.correctAnswer);
+    });
+    setAnswerKey(answerKeyMap);
+
     return questions
   });
 
