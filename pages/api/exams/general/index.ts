@@ -9,23 +9,20 @@ export default async function handler(
 
   const examName = "General";
   // TODO: this same code is used in 3 files, it should be put into a seperate function
-  try {
-    const exam = await prisma.exam.findFirstOrThrow({
-      where: { name: examName },
-      include: {
-        subelements: {
-          orderBy: {
-            subelementId: "asc"
-          }
-          // TODO: possibly include groups?
+  console.log("Trying to get general exam");
+  const exam = await prisma.exam.findFirstOrThrow({
+    where: { name: examName },
+    include: {
+      subelements: {
+        orderBy: {
+          subelementId: "asc"
         }
-      },
-    });
-    console.log(exam);
-    res.status(200).json(exam);
-  } catch (e) {
-    console.log(e);
-    res.status(404).json({ status: `Failed to query the database for the ${examName} exam data`, });
-  }
-  return;
+        // TODO: possibly include groups?
+      }
+    },
+  });
+  console.log(exam);
+  return res.status(200).json(exam);
+
+
 }

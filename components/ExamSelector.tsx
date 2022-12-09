@@ -14,6 +14,8 @@ export default function ExamSelector() {
 
   const toggleExamType = (examName: ExamTypes) => {
     console.log("Ok");
+    console.log(examName);
+
     // TODO: have to get details of the exam from the api and
     // set the number of questions in global state
     setVisibleExam(true);
@@ -22,7 +24,6 @@ export default function ExamSelector() {
 
   return (
     <>
-
       <ul className={styles.selectorContainer}>
         <li className={styles.examItem}>
           <Button onClick={() => toggleExamType(ExamTypes.TECHNICIAN)}>Technician</Button>

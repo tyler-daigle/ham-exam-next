@@ -38,6 +38,12 @@ export default function Exam() {
   // query to load the random exam questions
   const { isLoading, error, data } = useQuery(examName, async () => {
     const res = await fetch(`http://localhost:3000/api/exams/${examName}/random`);
+
+    if (res.status === 404) {
+      console.log("caught error");
+      throw new Error("Not implemented");
+    }
+
     const json = await res.json();
 
     // get just the questions
