@@ -1,4 +1,4 @@
-import { ExamTypes } from "@/types/types";
+import { ExamTypes, QuestionWithChoices } from "@/types/types";
 import { atom } from "jotai";
 
 // examAtom is used to store the exam type
@@ -9,3 +9,5 @@ export const answersAtom = atom(new Map<string, number>());
 
 // correctAnswersAtom holds the correct answers
 export const correctAnswersAtom = atom(new Map<string, number>());
+
+export const allQuestionsAtom = atom<QuestionWithChoices[]>([]);

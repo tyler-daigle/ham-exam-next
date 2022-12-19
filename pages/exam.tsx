@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { examAtom, answersAtom, correctAnswersAtom } from "state/atoms";
+import { examAtom, answersAtom, correctAnswersAtom, allQuestionsAtom } from "state/atoms";
 import { useAtom } from "jotai";
 import { useQuery } from "react-query";
 import { QuestionWithChoices } from "@/types/types";
@@ -33,6 +33,7 @@ export default function Exam() {
   const examAnswers = new Map<string, number>();
   const [answersMap, setAnswersMap] = useAtom(answersAtom);
   const [answerKey, setAnswerKey] = useAtom(correctAnswersAtom);
+  const [allQuestions, setAllQuestions] = useAtom(allQuestionsAtom);
   const [examName] = useAtom(examAtom);
   const router = useRouter();
   const [numQuestions, setNumQuestions] = useState(0);
@@ -51,6 +52,7 @@ export default function Exam() {
     // get just the questions
     const questions: QuestionWithChoices[] = json.QuestionList.map((q: any) => q.question);
     setNumQuestions(questions.length);
+    setAllQuestions(questions);
 
     // create the answer key and save it to the atom
     // the answer key is just the question ID and the index of the correct answer.

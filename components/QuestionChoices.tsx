@@ -4,6 +4,7 @@ import { Choice } from "@prisma/client";
 export interface Props {
   choices: Choice[]
 }
+// TODO: Add optional highlighting for the correct answer and an incorrect answer
 
 export default function QuestionChoices({ choices }: Props) {
   return (

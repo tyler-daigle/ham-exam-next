@@ -3,5 +3,5 @@ export interface Props {
 }
 
 export default function SmallText({ children }: Props) {
-  return <p style={{ fontSize: ".8rem", margin: ".5rem 0" }}>{children}</p>;
+  return <span style={{ fontSize: ".8rem", margin: ".5rem 0" }}>{children}</span>;
 }
