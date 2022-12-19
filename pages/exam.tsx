@@ -35,6 +35,7 @@ export default function Exam() {
   const [answerKey, setAnswerKey] = useAtom(correctAnswersAtom);
   const [examName] = useAtom(examAtom);
   const router = useRouter();
+  const [numQuestions, setNumQuestions] = useState(0);
 
   // query to load the random exam questions
   const { isLoading, error, data } = useQuery(examName, async () => {
@@ -49,6 +50,7 @@ export default function Exam() {
 
     // get just the questions
     const questions: QuestionWithChoices[] = json.QuestionList.map((q: any) => q.question);
+    setNumQuestions(questions.length);
 
     // create the answer key and save it to the atom
     // the answer key is just the question ID and the index of the correct answer.
@@ -66,7 +68,7 @@ export default function Exam() {
     return questions
   });
 
-  const numQuestions = 35; // TODO: Get from global state
+
 
   const saveAnswers = () => {
     setAnswersMap(new Map(examAnswers));

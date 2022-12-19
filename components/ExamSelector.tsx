@@ -33,7 +33,7 @@ export default function ExamSelector() {
         </li>
 
         <li className={styles.examItem}>
-          <Button onClick={() => toggleExamType(ExamTypes.GENERAL)} >General</Button>
+          <Button onClick={() => toggleExamType(ExamTypes.GENERAL)} disabled>General</Button>
           <p className={styles.examDetails}>
             <strong>General</strong> is your next step after <strong>Technician</strong>.
           </p>
