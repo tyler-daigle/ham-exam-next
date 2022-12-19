@@ -1,5 +1,6 @@
 import MainContainer from "@/components/UI/MainContainer";
 import ExamHeader from "@/components/ExamHeader";
+import Link from "next/link";
 
 export interface Props {
   children: React.ReactNode;
@@ -8,7 +9,7 @@ export interface Props {
 export default function MainLayout({ children }: Props) {
   return (
     <>
-      <ExamHeader>Amateur-Radio.School</ExamHeader>
+      <ExamHeader><Link href="/">Amateur-Radio.School</Link></ExamHeader>
       <MainContainer>
         {children}
       </MainContainer>

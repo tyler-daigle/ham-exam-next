@@ -1,4 +1,3 @@
-import ExamHeader from "@/components/ExamHeader";
 import PageHeader from "@/components/PageHeader";
 import MainLayout from "../Layouts/MainLayout";
 import ExamSelector from "@/components/ExamSelector";
